@@ -2,7 +2,7 @@
 
 describe('404 Page Tests', () => {
     beforeEach(() => {
-        cy.visit('/404.html'); // Предполагаем, что страница доступна по этому URL
+        cy.visit('/404.html');
     });
 
     it('should display the 404 page correctly', () => {
