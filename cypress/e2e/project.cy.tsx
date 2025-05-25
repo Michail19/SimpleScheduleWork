@@ -2,28 +2,28 @@
 
 describe('SimpleScheduleWork Project Page Tests', () => {
     beforeEach(() => {
-        // cy.intercept(
-        //     'GET',
-        //     'https://api.github.com/users/Michail19/repos*',
-        //     { fixture: 'mock-github-repos.json' }
-        // ).as('githubApi');
+        cy.fixture('mock-github-repos.json').then((mockData) => {
+            cy.visit('/project.html', {
+                onBeforeLoad(win) {
+                    const originalFetch = win.fetch;
 
-        // cy.visit('/project.html');
+                    win.fetch = async (...args) => {
+                        const [url] = args;
 
-        cy.visit('/project.html', {
-            onBeforeLoad(win) {
-                const originalFetch = win.fetch;
-                win.fetch = (...args) => {
-                    const [url] = args;
-                    if (typeof url === 'string' && url.includes('https://api.github.com/users/Michail19/repos')) {
-                        return Promise.resolve({
-                            ok: true,
-                            json: () => Promise.resolve(require('../fixtures/mock-github-repos.json')),
-                        });
-                    }
-                    return originalFetch(...args);
-                };
-            }
+                        if (typeof url === 'string' && url.includes('https://api.github.com/users/Michail19/repos')) {
+                            const blob = new Blob([JSON.stringify(mockData)], { type: 'application/json' });
+                            const init = {
+                                status: 200,
+                                statusText: 'OK',
+                                headers: { 'Content-Type': 'application/json' }
+                            };
+                            return new win.Response(blob, init); // 👈 используем реальный Response
+                        }
+
+                        return originalFetch(...args);
+                    };
+                }
+            });
         });
     });
 
@@ -70,7 +70,7 @@ describe('SimpleScheduleWork Project Page Tests', () => {
         cy.get('.footer__btn').should('have.length', 2);
         cy.get('.footer__btn').first().should('be.disabled');
         cy.get('.footer__btn').last().should('not.be.disabled');
-        cy.get('.footer__place').should('contain.text', 'Лист 1 из 3');
+        cy.get('.footer__place').should('contain.text', 'Лист 1 из 4');
     });
 
     it('should have theme toggle buttons', () => {
