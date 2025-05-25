@@ -7,5 +7,8 @@ export default defineConfig({
         supportFile: "cypress/support/e2e.ts",
         viewportWidth: 1280,
         viewportHeight: 720
+    },
+    env: {
+        ENV: process.env.NODE_ENV || 'development'
     }
 });

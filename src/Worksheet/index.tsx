@@ -91,7 +91,7 @@ const Worksheet: React.FC = () => {
         const fetchData = async () => {
             const token = localStorage.getItem("authToken"); // предполагается, что ты сохраняешь токен после логина
 
-            if (token) {
+            if (token && token != 'test-token') {
                 if (!await verifyToken()) {
                     // Показываем alert с сообщением
                     alert(currentTranslation.old_session);
@@ -107,6 +107,7 @@ const Worksheet: React.FC = () => {
             }
 
             try {
+                if (!token) throw new Error("Ошибка при загрузке с сервера");
                 // console.log(token);
                 const response = await fetch("https://ssw-backend.onrender.com/schedule/weekly", {
                     headers: {
@@ -292,6 +293,9 @@ const Worksheet: React.FC = () => {
         try {
             const token = localStorage.getItem("authToken");
             const url = `https://ssw-backend.onrender.com/schedule/weekly?date=${formattedDate}`;
+
+            if (!token) throw new Error("Ошибка при загрузке с сервера");
+
             const response = await fetch(url, {
                 headers: {
                     "Authorization": `Bearer ${token}`,

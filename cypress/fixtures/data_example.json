@@ -1,0 +1,173 @@
+{
+  "currentWeek": "17-23 march 2025",
+  "employees": [
+    {
+      "id": 1,
+      "fio": "Ершов Михаил Алексеевич",
+      "projects": "Project_Yandex_ONO-TEBE-NADO Project_Yandex_BLOG Project_Yandex_WEB-LAREK Project_Yandex_MESTO-PROJECT Project_Yandex_TRAVEL Project_Yandex_UCHEBA",
+      "weekSchedule": {
+        "monday": { "start": "08:00", "end": "13:40" },
+        "tuesday": { "start": "08:00", "end": "15:30" },
+        "wednesday": { "start": "15:20", "end": "20:00" },
+        "thursday": { "start": "15:20", "end": "20:00" },
+        "friday": { "start": "08:00", "end": "15:30" },
+        "saturday": { "start": "", "end": "" },
+        "sunday": { "start": "", "end": "" }
+      }
+    },
+    {
+      "id": 2,
+      "fio": "Иванов Иван Иванович",
+      "projects": "Project_Yandex_ONO-TEBE-NADO Project_Yandex_BLOG Project_Yandex_WEB-LAREK Project_Yandex_MESTO-PROJECT Project_Yandex_TRAVEL Project_Yandex_UCHEBA",
+      "weekSchedule": {
+        "monday": { "start": "08:00", "end": "17:00" },
+        "tuesday": { "start": "08:00", "end": "17:00" },
+        "wednesday": { "start": "08:00", "end": "17:00" },
+        "thursday": { "start": "08:00", "end": "17:00" },
+        "friday": { "start": "08:00", "end": "16:00" },
+        "saturday": { "start": "10:00", "end": "14:00" },
+        "sunday": { "start": "10:00", "end": "14:00" }
+      }
+    },
+    {
+      "id": 3,
+      "fio": "Петров Петр Петрович",
+      "projects": "Project_Yandex_ONO-TEBE-NADO Project_Yandex_BLOG Project_Yandex_WEB-LAREK Project_Yandex_MESTO-PROJECT Project_Yandex_TRAVEL Project_Yandex_UCHEBA",
+      "weekSchedule": {
+        "monday": { "start": "09:00", "end": "18:00" },
+        "tuesday": { "start": "09:00", "end": "18:00" },
+        "wednesday": { "start": "09:00", "end": "18:00" },
+        "thursday": { "start": "09:00", "end": "18:00" },
+        "friday": { "start": "09:00", "end": "18:00" },
+        "saturday": { "start": "10:00", "end": "15:00" },
+        "sunday": { "start": "10:00", "end": "15:00" }
+      }
+    },
+    {
+      "id": 4,
+      "fio": "Петров Петр Петрович",
+      "projects": "Project_Yandex_ONO-TEBE-NADO Project_Yandex_UCHEBA",
+      "weekSchedule": {
+        "monday": { "start": "09:00", "end": "18:00" },
+        "tuesday": { "start": "09:00", "end": "18:00" },
+        "wednesday": { "start": "09:00", "end": "18:00" },
+        "thursday": { "start": "09:00", "end": "18:00" },
+        "friday": { "start": "09:00", "end": "18:00" },
+        "saturday": { "start": "10:00", "end": "15:00" },
+        "sunday": { "start": "10:00", "end": "15:00" }
+      }
+    },
+    {
+      "id": 5,
+      "fio": "Петров Петр Петрович",
+      "projects": "Project_Yandex_MESTO-PROJECT Project_Yandex_UCHEBA",
+      "weekSchedule": {
+        "monday": { "start": "09:00", "end": "18:00" },
+        "tuesday": { "start": "09:00", "end": "18:00" },
+        "wednesday": { "start": "09:00", "end": "18:00" },
+        "thursday": { "start": "09:00", "end": "18:00" },
+        "friday": { "start": "09:00", "end": "18:00" },
+        "saturday": { "start": "10:00", "end": "15:00" },
+        "sunday": { "start": "10:00", "end": "15:00" }
+      }
+    },
+    {
+      "id": 6,
+      "fio": "Петров Петр Петрович",
+      "projects": "Project_Yandex_ONO-TEBE-NADO Project_Yandex_BLOG Project_Yandex_WEB-LAREK",
+      "weekSchedule": {
+        "monday": { "start": "09:00", "end": "18:00" },
+        "tuesday": { "start": "09:00", "end": "18:00" },
+        "wednesday": { "start": "09:00", "end": "18:00" },
+        "thursday": { "start": "09:00", "end": "18:00" },
+        "friday": { "start": "09:00", "end": "18:00" },
+        "saturday": { "start": "10:00", "end": "15:00" },
+        "sunday": { "start": "10:00", "end": "15:00" }
+      }
+    },
+    {
+      "id": 7,
+      "fio": "Петров Петр Петрович",
+      "projects": "Project_Yandex_UCHEBA",
+      "weekSchedule": {
+        "monday": { "start": "09:00", "end": "18:00" },
+        "tuesday": { "start": "09:00", "end": "18:00" },
+        "wednesday": { "start": "09:00", "end": "18:00" },
+        "thursday": { "start": "09:00", "end": "18:00" },
+        "friday": { "start": "09:00", "end": "18:00" },
+        "saturday": { "start": "10:00", "end": "15:00" },
+        "sunday": { "start": "10:00", "end": "15:00" }
+      }
+    },
+    {
+      "id": 8,
+      "fio": "Петров Петр Петрович",
+      "projects": "Project_Yandex_MESTO-PROJECT",
+      "weekSchedule": {
+        "monday": { "start": "09:00", "end": "18:00" },
+        "tuesday": { "start": "09:00", "end": "18:00" },
+        "wednesday": { "start": "09:00", "end": "18:00" },
+        "thursday": { "start": "09:00", "end": "18:00" },
+        "friday": { "start": "09:00", "end": "18:00" },
+        "saturday": { "start": "10:00", "end": "15:00" },
+        "sunday": { "start": "10:00", "end": "15:00" }
+      }
+    },
+    {
+      "id": 9,
+      "fio": "Петров Петр Петрович",
+      "projects": "Project_Yandex_TRAVEL Project_Yandex_UCHEBA",
+      "weekSchedule": {
+        "monday": { "start": "09:00", "end": "18:00" },
+        "tuesday": { "start": "09:00", "end": "18:00" },
+        "wednesday": { "start": "09:00", "end": "18:00" },
+        "thursday": { "start": "09:00", "end": "18:00" },
+        "friday": { "start": "09:00", "end": "18:00" },
+        "saturday": { "start": "10:00", "end": "15:00" },
+        "sunday": { "start": "10:00", "end": "15:00" }
+      }
+    },
+    {
+      "id": 10,
+      "fio": "Петров Петр Петрович",
+      "projects": "Project_Yandex_ONO-TEBE-NADO Project_Yandex_BLOG Project_Yandex_WEB-LAREK",
+      "weekSchedule": {
+        "monday": { "start": "09:00", "end": "18:00" },
+        "tuesday": { "start": "09:00", "end": "18:00" },
+        "wednesday": { "start": "09:00", "end": "18:00" },
+        "thursday": { "start": "09:00", "end": "18:00" },
+        "friday": { "start": "09:00", "end": "18:00" },
+        "saturday": { "start": "10:00", "end": "15:00" },
+        "sunday": { "start": "10:00", "end": "15:00" }
+      }
+    },
+    {
+      "id": 11,
+      "fio": "Петров Петр Петрович",
+      "projects": "Project_Yandex_ONO-TEBE-NADO Project_Yandex_UCHEBA",
+      "weekSchedule": {
+        "monday": { "start": "09:00", "end": "18:00" },
+        "tuesday": { "start": "09:00", "end": "18:00" },
+        "wednesday": { "start": "09:00", "end": "18:00" },
+        "thursday": { "start": "09:00", "end": "18:00" },
+        "friday": { "start": "09:00", "end": "18:00" },
+        "saturday": { "start": "10:00", "end": "15:00" },
+        "sunday": { "start": "10:00", "end": "15:00" }
+      }
+    },
+    {
+      "id": 12,
+      "fio": "Петров Петр Петрович",
+      "projects": "Project_Yandex_BLOG Project_Yandex_WEB-LAREK Project_Yandex_TRAVEL Project_Yandex_UCHEBA",
+      "weekSchedule": {
+        "monday": { "start": "09:00", "end": "18:00" },
+        "tuesday": { "start": "09:00", "end": "18:00" },
+        "wednesday": { "start": "09:00", "end": "18:00" },
+        "thursday": { "start": "09:00", "end": "18:00" },
+        "friday": { "start": "09:00", "end": "18:00" },
+        "saturday": { "start": "10:00", "end": "15:00" },
+        "sunday": { "start": "10:00", "end": "15:00" }
+      }
+    }
+  ]
+}
