@@ -26,3 +26,6 @@ npm install --save-dev @testing-library/jest-dom
 npm install --save-dev typescript-eslint eslint-plugin-react @eslint/js typescript-eslint
 npm install --save-dev jest ts-jest @types/jest identity-obj-proxy
 npm install --save-dev @testing-library/jest-dom
+npm install --save-dev @testing-library/react @testing-library/jest-dom jest-canvas-mock
+npm install --save-dev jest-fetch-mock
+npm install cypress --save-dev

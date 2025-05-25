@@ -13,6 +13,12 @@
     cursor: default;
 }
 
+@media screen and (max-width: 1089px) and (min-width: 870px) {
+    .header__title {
+        margin-left: 5%;
+    }
+}
+
 @media screen and (max-width: 869px) {
     .header__title {
         text-align: center;

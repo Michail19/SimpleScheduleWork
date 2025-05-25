@@ -71,7 +71,7 @@ const ImageEditor: React.FC<ImageEditorProps> = ({ src, letter, onRender }) => {
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
             ctx.fillText(letter, canvas.width / 2, canvas.height / 2);
-            console.log(letter);
+            // console.log(letter);
 
             // Генерация dataURL, если нужно
             if (onRender) {
