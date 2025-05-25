@@ -88,6 +88,8 @@ const GitHubProjects: React.FC = () => {
             }
 
             try {
+                if (!token) throw new Error('Server responded with error');
+
                 // 1. Пробуем получить данные с сервера с авторизацией
                 const [repoResponse, serverResponse] = await Promise.all([
                     octokit.request('GET /users/{username}/repos', {

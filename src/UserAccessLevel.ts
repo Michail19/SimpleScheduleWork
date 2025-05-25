@@ -40,8 +40,7 @@ export async function verifyToken(): Promise<boolean> {
 
     const controller = new AbortController();
     const timeoutId = setTimeout(() => {
-        controller.abort();
-        return false;
+        controller.abort(); // Это вызовет ошибку AbortError внутри fetch
     }, 8000); // 8 сек
 
     try {
@@ -51,6 +50,8 @@ export async function verifyToken(): Promise<boolean> {
                 'Authorization': `Bearer ${token}`
             }
         });
+
+        console.log(response.status);
 
         if (!response.ok) {
             if (response.status === 401 || response.status === 403) {
