@@ -17,6 +17,15 @@ jobs:
       run: npm install
     - name: Run tests
       run: npm run test
+    - name: Run Cypress tests
+        uses: cypress-io/github-action@v6
+        with:
+          start: npm run start
+          wait-on: 'http://localhost:3000'
+          wait-on-timeout: 60
+          browser: chrome
+        env:
+          CYPRESS_BASE_URL: 'http://localhost:3000'
 #    - name: Lint code
 #      run: npm run lint
 
