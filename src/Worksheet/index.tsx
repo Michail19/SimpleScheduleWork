@@ -91,7 +91,7 @@ const Worksheet: React.FC = () => {
         const fetchData = async () => {
             const token = localStorage.getItem("authToken"); // предполагается, что ты сохраняешь токен после логина
 
-            if (token && token != 'test-token') {
+            if (token) {
                 if (!await verifyToken()) {
                     // Показываем alert с сообщением
                     alert(currentTranslation.old_session);
