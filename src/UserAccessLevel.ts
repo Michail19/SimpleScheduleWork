@@ -44,7 +44,7 @@ export async function verifyToken(): Promise<boolean> {
     }, 8000); // 8 сек
 
     try {
-        const response = await fetch('https://ssw-backend.onrender.com/auth/verify', {
+        const response = await fetch('http://127.0.0.1:8000/auth/verify/', {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`

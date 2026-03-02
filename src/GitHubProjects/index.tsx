@@ -97,7 +97,7 @@ const GitHubProjects: React.FC = () => {
                         sort: 'updated',
                         per_page: 100,
                     }),
-                    fetch('https://ssw-backend.onrender.com/projects/all', {
+                    fetch('http://127.0.0.1:8000/projects/all/', {
                         headers: {
                             "Authorization": `Bearer ${token}`, // 🔐 токен добавляется
                         },
@@ -108,7 +108,7 @@ const GitHubProjects: React.FC = () => {
 
                 const gitRepos = repoResponse.data as GitHubRepo[];
                 const employeeData = await serverResponse.json();
-                const projects = employeeData?.employees ?? {};
+                const projects = employeeData?.projects ?? {};
 
                 const filteredRepos = gitRepos.filter(
                     (repo) =>
@@ -366,7 +366,7 @@ const GitHubProjects: React.FC = () => {
             try {
                 const token = localStorage.getItem('authToken'); // 🔐 Получаем токен
 
-                const response = await fetch("https://ssw-backend.onrender.com/schedule/weekly", {
+                const response = await fetch("http://127.0.0.1:8000/schedule/weekly/", {
                     headers: {
                         "Authorization": `Bearer ${token}`, // 🔐 токен добавляется
                         "Content-Type": "application/json"

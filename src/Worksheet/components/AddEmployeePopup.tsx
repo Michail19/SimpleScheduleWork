@@ -104,7 +104,7 @@ export const AddEmployeePopup: React.FC<AddEmployeePopupProps> = ({
         try {
             setLoading(true);
 
-            const response = await fetch("https://ssw-backend.onrender.com/schedule/add", {
+            const response = await fetch("http://127.0.0.1:8000/schedule/add/", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
