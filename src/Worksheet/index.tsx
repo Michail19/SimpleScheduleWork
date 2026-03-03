@@ -109,7 +109,7 @@ const Worksheet: React.FC = () => {
             try {
                 if (!token) throw new Error("Ошибка при загрузке с сервера");
                 // console.log(token);
-                const response = await fetch("https://ssw-backend.onrender.com/schedule/weekly", {
+                const response = await fetch("https://ssw-backend-django.onrender.com/schedule/weekly/", {
                     headers: {
                         "Authorization": `Bearer ${token}`,
                     },
@@ -120,6 +120,8 @@ const Worksheet: React.FC = () => {
                 }
 
                 const data = await response.json();
+
+                console.log(data);
 
                 const allProjects = data.employees.flatMap((employee: { projects: string }) =>
                     employee.projects?.split(" ") || []
@@ -292,7 +294,7 @@ const Worksheet: React.FC = () => {
 
         try {
             const token = localStorage.getItem("authToken");
-            const url = `https://ssw-backend.onrender.com/schedule/weekly?date=${formattedDate}`;
+            const url = `https://ssw-backend-django.onrender.com/schedule/weekly/?date=${formattedDate}/`;
 
             if (!token) throw new Error("Ошибка при загрузке с сервера");
 
@@ -323,6 +325,8 @@ const Worksheet: React.FC = () => {
             }
 
             const data = await response.json();
+
+            console.log(data);
 
             const allProjects = data.employees.flatMap(
                 (e: { projects: string }) => e.projects?.split(" ") || []
@@ -592,7 +596,7 @@ const Worksheet: React.FC = () => {
                 return; // <<< ДОБАВИТЬ! Прерываем функцию
             }
 
-            const response = await fetch("https://ssw-backend.onrender.com/schedule/update", {
+            const response = await fetch("https://ssw-backend-django.onrender.com/schedule/update/", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

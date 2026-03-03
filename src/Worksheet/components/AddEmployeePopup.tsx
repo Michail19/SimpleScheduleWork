@@ -104,7 +104,7 @@ export const AddEmployeePopup: React.FC<AddEmployeePopupProps> = ({
         try {
             setLoading(true);
 
-            const response = await fetch("https://ssw-backend.onrender.com/schedule/add", {
+            const response = await fetch("https://ssw-backend-django.onrender.com/schedule/add/", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
