@@ -1,0 +1,144 @@
+<!doctype html><html lang="ru"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Контакты | SimpleScheduleWork</title><style>body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fffff4;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        @media screen and (max-width: 1089px) and (min-width: 300px) {
+            body {
+                display: flex;
+                align-content: center;
+            }
+        }
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background-color: #f9fdf9;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #1f1f1f;
+            margin-bottom: 20px;
+            text-decoration: underline;
+        }
+        .info {
+            margin-bottom: 30px;
+        }
+        .info p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        .info a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .info a:hover {
+            text-decoration: underline;
+        }
+        iframe {
+            width: 100%;
+            height: 430px;
+            border: none;
+            border-radius: 8px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 14px;
+            color: #777;
+        }
+        .navbar {
+            padding: 10px 5px;
+        }
+        .navbar a {
+            text-decoration: none;
+            font-weight: bold;
+            align-self: center;
+            font-size: 2em;
+            color: #1f1f1f;
+        }
+        .navbar a:hover {
+            color: #4b4b4b;
+            text-decoration: underline;
+        }
+        .navbar-title {
+            display: flex;
+            gap: 20px;
+            justify-content: space-between;
+        }
+        .navbar-title h1 {
+            text-decoration: underline;
+        }
+        .navbar-title:hover h1 {
+            text-decoration: none;
+        }
+
+        .dark-theme {
+            background-color: #252525;
+            color: #EAEAEA;
+        }
+        .dark-theme .container {
+            background-color: #323232;
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.7);
+        }
+        .dark-theme h1 {
+            color: #f3f3f3;
+        }
+        .dark-theme .info a {
+            color: #ABC8FFE5;
+        }
+        .dark-theme .footer {
+            color: #a1a1a1;
+        }
+        .dark-theme .navbar a {
+            color: #f3f3f3;
+        }
+        .dark-theme .navbar a:hover {
+            color: #d3d3d3;
+        }</style><script>const translations = {
+            ru: {
+                contact_information: "Контактная информация",
+                home: "Главная",
+                full_name: "ФИО:",
+                name_value: "Ершов Михаил Алексеевич",
+                github: "GitHub (вопросы, предложения):",
+                university: "Учебное заведение:",
+                university_value: "МИРЭА - Российский технологический университет",
+                location: "Местоположение",
+                copyright: "© 2025 SimpleScheduleWork — проект для демонстрации навыков планирования"
+            },
+            en: {
+                contact_information: "Contact information",
+                home: "Home",
+                full_name: "Full name:",
+                name_value: "Mikhail Ershov",
+                github: "GitHub (questions, suggestions):",
+                university: "University:",
+                university_value: "MIREA - Russian Technological University",
+                location: "Location",
+                copyright: "© 2025 SimpleScheduleWork — a project to demonstrate planning skills"
+            }
+        };
+
+        let currentLang = localStorage.getItem("lang") || "ru";
+
+        function updateText() {
+            document.querySelectorAll("[data-key]").forEach((el) => {
+                const key = el.getAttribute("data-key");
+                el.textContent = translations[currentLang][key];
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('dark_theme') === 'enabled') {
+                document.body.classList.add('dark-theme');
+            }
+
+            if (localStorage.getItem('changed-lang') === 'enabled') {
+                document.body.classList.add('changed-lang');
+                updateText();
+            }
+        });</script></head><body><div class="container"><div class="navbar"><div class="navbar-title"><h1 data-key="contact_information">Контактная информация</h1><a href="./index.html" data-key="home">Главная</a></div></div><div class="info"><p><strong data-key="full_name">ФИО:</strong> <span data-key="name_value">Ершов Михаил Алексеевич</span></p><p><strong data-key="github">GitHub (вопросы, предложения):</strong> <a href="https://github.com/Michail19/SimpleSheduleWork/issues" target="_blank">github.com/issues</a></p><p><strong data-key="university">Учебное заведение:</strong> <span data-key="university_value">МИРЭА - Российский технологический университет</span></p><p><strong>Email:</strong> <a href="mailto:Mi.ershov.2017@yandex.ru">Mi.ershov.2017@yandex.ru</a></p></div><h2 data-key="location">Местоположение</h2><iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Ac13560f85fe038750f4171464321715756c1a75b22dd80df127a4074f7c699cc&amp;source=constructor" width="640" height="430" frameborder="0"></iframe><div class="footer" data-key="copyright">© 2025 SimpleScheduleWork — проект для демонстрации навыков программирования</div></div></body></html>

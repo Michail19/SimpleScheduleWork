@@ -1,0 +1,89 @@
+<!doctype html><html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="icon.png" sizes="32x32" type="image/x-icon"><title>404 - Страница не найдена</title><style>body {
+            font-family: 'Inter', Arial, sans-serif;
+            margin: 0;
+            background-color: #0A0C10;
+            color: #eaeaea;
+        }
+
+        /* Фоновая секция */
+        .image-section {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            background-image: url('404.png');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: contain;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            padding-bottom: 5vh;
+            box-sizing: border-box;
+        }
+
+        /* Контейнер с текстом */
+        .text-content {
+            text-align: center;
+            width: 100%;
+        }
+
+        /* Заголовок */
+        h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            margin: 0.5rem 0;
+            font-weight: 700;
+        }
+
+        /* Описание */
+        p {
+            font-size: clamp(1rem, 2vw, 1.8rem);
+            margin: 0.2rem 0;
+            opacity: 0.9;
+        }
+
+        /* Кнопка */
+        a {
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            display: inline-block;
+            margin-top: 20px;
+            font-size: clamp(1rem, 1.5vw, 1.2rem);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            background-color: #0062cc;
+        }</style><script>const translations = {
+            ru: {
+                okak: "ОКАК",
+                not_founded: "Страница не найдена.",
+                returning: "Вернуться на главную"
+            },
+            en: {
+                okak: "OKAK",
+                not_founded: "The page was not found.",
+                returning: "Back to the main page"
+            }
+        };
+
+        let currentLang = localStorage.getItem("lang") || "ru";
+
+        function updateText() {
+            document.querySelectorAll("[data-key]").forEach((el) => {
+                const key = el.getAttribute("data-key");
+                el.textContent = translations[currentLang][key];
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('changed-lang') === 'enabled') {
+                document.body.classList.add('changed-lang');
+                updateText();
+            }
+        });</script></head><body><div class="image-section"><div class="text-content"><h1>404</h1><p data-key="okak" style="font-size: clamp(1.5rem, 2vw, 2.5rem);">ОКАК</p><p data-key="not_founded">Страница не найдена.</p><a href="./index.html" data-key="returning">Вернуться на главную</a></div></div></body></html>

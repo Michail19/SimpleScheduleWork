@@ -1,0 +1,378 @@
+<!doctype html><html lang="ru" xmlns="http://www.w3.org/1999/html"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><link rel="icon" href="icon.png" sizes="32x32" type="image/x-icon"><title>SimpleScheduleWork</title><script defer="defer" src="/SimpleScheduleWork/index.bundle.js"></script><script defer="defer" src="/SimpleScheduleWork/indexStyles.bundle.js"></script><link href="/SimpleScheduleWork/index.css" rel="stylesheet"><link href="/SimpleScheduleWork/indexStyles.css" rel="stylesheet"></head><body class="page"><div id="preloader"><div class="loader"></div><p data-key="loading">Загрузка...</p></div><header class="header-index" id="start"><style>.header-index {
+                padding: 2vh 0.25vw;
+                position: relative;
+                z-index: 10;
+            }</style><div class="header__up-blocks__wrapper_menu"><div class="header__up-blocks__menu-toggle-place"></div><div class="header__up-blocks__wrapper_menu__list"><a class="header__up-blocks__wrapper__list__btn" href="./main.html" data-key="schedule">Расписание</a> <a class="header__up-blocks__wrapper__list__btn" href="./project.html" data-key="projects">Проекты</a></div></div><div class="header__up-blocks"><div id="head"></div><div class="header__up-blocks__wrapper"><div class="header__up-blocks__wrapper_icon-place"></div><div class="header__up-blocks__wrapper__list"><button class="header__up-blocks__wrapper__list__theme-toggle"></button> <button class="header__up-blocks__wrapper__list__theme-toggle_lang"></button></div></div></div></header><section class="content"><style>.content {
+                margin: 0 1vw 3vh 1vw;
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }</style><div class="head"><h1 class="head__title" id="mainTitle"><span data-key="welcome">Добро пожаловать в</span><br/><strong class="head__title_name">SimpleScheduleWork</strong></h1><p class="head__text" id="subText"><strong>SimpleScheduleWork</strong><span data-key="description">— это инструмент для эффективного планирования и управления рабочим графиком сотрудников. Система предоставляет простое и наглядное представление расписания, а также управление привязкой сотрудников к проектам. Организуйте рабочие недели, контролируйте занятость и управляйте проектами — всё в одном месте.</span></p><style>.head {
+                    height: 400vh;
+                    display: flex;
+                    flex-direction: column;
+                    position: relative;
+                }
+
+                .head__title, .head__text {
+                    position: fixed;  /* Будем менять на absolute в скрипте */
+                    left: 5vw;
+                    right: 5vw;
+                    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1), position 0s linear 0.8s;
+                    will-change: transform, opacity;
+                }
+
+                .head__title {
+                    font-size: clamp(5px, 8vw, 5rem);
+                    top: 20vh;
+                    transform-origin: top left;
+                }
+
+                .head__title_name {
+                    margin-left: clamp(5vw, 5vw, 20vw);
+                }
+
+                .head__text {
+                    font-size: clamp(1.2rem, 5vw, 2.5rem);
+                    top: 20vh;
+                    opacity: 0;
+                    transform: translateY(30px) scale(0.95);
+                }
+
+                /* Класс для отключения фиксации */
+                .head__title.unfixed,
+                .head__text.unfixed {
+                    position: absolute;
+                    left: 5vw;
+                    right: 5vw;
+                    transform: none !important;
+                    transition: none !important; /* Полностью отключаем переходы */
+                    animation: none !important;
+                }</style><script>const title = document.getElementById('mainTitle');
+                const subText = document.getElementById('subText');
+                const head = document.querySelector('.head');
+                const windowHeight = window.innerHeight;
+                const headHeight = head.offsetHeight;
+                const unfixedPoint = headHeight - windowHeight; // Точка отключения фиксации
+                let isFixed = true;
+
+                // Настройки анимации
+                const settings = {
+                    titleFadeStart: 0.2,
+                    titleFadeEnd: 0.6,
+                    textFadeStart: 0.4,
+                    textFadeEnd: 0.8
+                };
+
+                window.addEventListener('scroll', () => {
+                    const scrollY = window.scrollY;
+                    const scrollProgress = scrollY / (headHeight - windowHeight * 0.7);
+
+                    // Отключаем фиксацию при достижении конца контейнера
+                    if (scrollY >= unfixedPoint) {
+                        title.classList.add('unfixed');
+                        subText.classList.add('unfixed');
+
+                        // Позиционируем абсолютно внизу контейнера
+                        title.style.top = `${headHeight - windowHeight * 0.95}px`;
+                        subText.style.top = `${headHeight - windowHeight * 0.95}px`;
+                        isFixed = false;
+                    }
+                    else if (!isFixed) {
+                        title.classList.remove('unfixed');
+                        subText.classList.remove('unfixed');
+
+                        // Возвращаем фиксированное позиционирование
+                        title.style.top = '20vh';
+                        subText.style.top = '20vh';
+
+                        // Временно отключаем transition
+                        title.style.transition = 'none';
+                        subText.style.transition = 'none';
+
+                        // Возвращаем элементы на место без анимации
+                        requestAnimationFrame(() => {
+                            // Включаем transition обратно
+                            requestAnimationFrame(() => {
+                                title.style.transition = '';
+                                subText.style.transition = '';
+                            });
+                        });
+
+                        isFixed = true;
+                    }
+                    else {
+                        // Остальная анимация
+                        if (scrollProgress >= settings.titleFadeStart) {
+                            const titleProgress = Math.min(
+                                (scrollProgress - settings.titleFadeStart) /
+                                (settings.titleFadeEnd - settings.titleFadeStart),
+                                1
+                            );
+                            title.style.opacity = 1 - titleProgress;
+                            title.style.transform = `translateY(${-40 * titleProgress}vh) scale(${1 - titleProgress * 0.2})`;
+                        } else {
+                            title.style.opacity = 1;
+                            title.style.transform = 'translateY(0) scale(1)';
+                        }
+
+                        if (scrollProgress >= settings.textFadeStart) {
+                            const textProgress = Math.min(
+                                (scrollProgress - settings.textFadeStart) /
+                                (settings.textFadeEnd - settings.textFadeStart),
+                                1
+                            );
+                            subText.style.opacity = textProgress;
+                            subText.style.transform = `translateY(${30 * (1 - textProgress)}px) scale(${0.95 + textProgress * 0.05})`;
+                        } else {
+                            subText.style.opacity = 0;
+                            subText.style.transform = 'translateY(30px) scale(0.95)';
+                        }
+                    }
+                });</script></div><div class="scroll-container" id="content"><div class="first-vertical"><section class="scroll-section"><h2 class="subtitle" data-key="features">Возможности:</h2><div class="block"><ul class="block_ul"><li class="block_text" data-key="feature_edit"><strong>Гибкое редактирование расписания</strong>: управление временем по дням и неделям, визуальное выделение выходных и смен.</li><li class="block_text" data-key="feature_projects"><strong>Быстрый доступ к проектам</strong>: фильтрация, просмотр привязок сотрудников.</li><li class="block_text" data-key="feature_interface"><strong>Интуитивный интерфейс</strong>: ничего лишнего, всё на одном экране.</li><li class="block_text" data-key="feature_scaling"><strong>Масштабирование</strong>: переключение между неделями и сотрудниками.</li></ul><div class="screenshot"><img class="screenshot_img img_1" src="employees.png" alt="Таблица расписания сотрудников"> <img class="screenshot_img img_2" src="employeesN.png" alt="Таблица расписания сотрудников"><p class="screenshot_underline" data-key="edit_schedule">Редактирование графика сотрудников</p></div></div></section></div><div class="horizontal-scroll-zone"><div class="scroll-wrapper"></div></div><div class="second-vertical"><section class="scroll-section"><h2 class="subtitle" data-key="advantages">Преимущества сервиса:</h2><div class="block"><ul class="block_ul"><li class="block_text" data-key="advantage_fast_edit">Быстрое редактирование расписания — прямо в таблице</li><li class="block_text" data-key="advantage_planning">Планирование на несколько недель вперёд</li><li class="block_text" data-key="advantage_binding">Привязка сотрудников к проектам</li><li class="block_text" data-key="advantage_roles">Роли пользователей: владелец и сотрудники</li><li class="block_text" data-key="advantage_cloud">Хранение данных в облаке</li><li class="block_text" data-key="advantage_mobile">Удобный интерфейс на мобильных устройствах</li></ul><div class="screenshot"><img class="screenshot_img img_1" src="projects.png" alt="Карточки проектов"> <img class="screenshot_img img_2" src="projectsN.png" alt="Карточки проектов"><p class="screenshot_underline" data-key="view_projects">Просмотр и фильтрация проектов</p></div></div></section></div><style>.subtitle {
+                    font-size: clamp(1.4rem, 5vw, 2rem);
+                    margin-top: 4rem;
+                    margin-bottom: 1rem;
+                    font-weight: 600;
+                    text-align: left;
+                }
+
+                .block_ul {
+                    list-style: none;
+                    padding-left: 1.5rem;
+                    margin-bottom: 2rem;
+                }
+
+                .block_text {
+                    position: relative;
+                    margin-bottom: 1rem;
+                    font-size: clamp(1rem, 3.5vw, 1.1rem);
+                    line-height: 1.6;
+                    padding-left: 1.5rem;
+
+                    opacity: 0;
+                    transform: translateX(50px);
+                    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+                }
+
+                .block_text.visible {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+
+                .block_text::before {
+                    content: "✔";
+                    position: absolute;
+                    left: 0;
+                    color: #4CAF50; /* зелёный для акцента */
+                    font-size: 1rem;
+                }
+
+                .screenshot {
+                    margin: 2rem 0;
+                    text-align: center;
+                }
+
+                .screenshot_img {
+                    max-width: 98vw;
+                    height: auto;
+                    border-radius: 12px;
+                    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+                    transition: transform 0.3s ease;
+                }
+
+                .screenshot_img:hover {
+                    transform: scale(1.02);
+                }
+
+                .dark-theme .screenshot_img {
+                    box-shadow: 0 4px 16px rgba(255, 255, 255, 0.75);
+                }
+
+                .img_1 {
+                    display: block;
+                }
+
+                .dark-theme .img_1 {
+                    display: none;
+                }
+
+                .img_2 {
+                    display: none;
+                }
+
+                .dark-theme .img_2 {
+                    display: block;
+                }
+
+                .screenshot_underline {
+                    margin-top: 0.5rem;
+                    font-size: clamp(0.8rem, 3vw, 0.95rem);
+                    color: #666;
+                    font-style: italic;
+                }
+
+                .dark-theme .screenshot_underline {
+                    color: #ababab;
+                }
+
+                /* Стили для горизонтального скролла */
+                .scroll-container {
+                    width: 100%;
+                    height: 200%; /* Увеличиваем высоту для прокрутки */
+                }
+
+                /* Первый блок с плавным выходом */
+                .first-vertical {
+                    position: relative;
+                    height: 100%;
+                    z-index: 1; /* На первом плане */
+                    transition: transform 0.75s ease-out; /* Плавный выход первого блока */
+                }
+
+                /* Второй блок, изначально скрыт и сдвинут вправо */
+                .second-vertical {
+                    position: relative;
+                    height: 100%;
+                    margin-top: -25vh;
+                    z-index: 2; /* Второй блок поверх первого */
+                    opacity: 0;
+                    transform: translateX(100%); /* Второй блок сдвинут вправо */
+                    transition: transform 0.75s ease-out, opacity 1s ease-out; /* Плавная анимация */
+                }
+
+                /* Когда прокрутили первый блок, второй должен появиться */
+                .scrolled-past-first .first-vertical {
+                    transform: translateX(-100%); /* Первый блок уходит влево */
+                }
+
+                .scrolled-past-first .second-vertical {
+                    transform: translateX(0); /* Второй блок появляется на экране */
+                    opacity: 1; /* Второй блок становится видимым */
+                }
+
+                /* Стили для горизонтального скролла */
+                .horizontal-scroll-zone {
+                    position: relative;
+                }</style><script>document.addEventListener('DOMContentLoaded', () => {
+                    const elements = document.querySelectorAll('.block_text');
+
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add('visible');
+                            } else {
+                                entry.target.classList.remove('visible');
+                            }
+                        });
+                    }, {
+                        threshold: 0.5 // Когда 50% элемента видны
+                    });
+
+                    elements.forEach(el => observer.observe(el));
+                });
+
+                document.addEventListener('DOMContentLoaded', () => {
+                    const scrollContainer = document.getElementById('content');
+                    const firstVertical = document.querySelector('.first-vertical');
+                    const secondVertical = document.querySelector('.second-vertical');
+                    const horizontalZone = document.querySelector('.horizontal-scroll-zone');
+                    const scrollWrapper = document.querySelector('.scroll-wrapper');
+
+                    window.addEventListener('scroll', () => {
+                        const scrollY = window.scrollY;
+                        const windowBottom = scrollY + window.innerHeight * 2 / 3; // Нижняя граница экрана
+                        const windowTop = scrollY; // Верхняя граница экрана
+                        const windowTopBottom = scrollY + window.innerHeight * 1.75; // Верхняя нижняя граница экрана
+
+                        const firstBottom = firstVertical.offsetTop + firstVertical.offsetHeight;
+                        const secondTop = secondVertical.offsetTop;
+                        const horizontalZoneTop = horizontalZone.offsetTop;
+                        const horizontalZoneHeight = horizontalZone.offsetHeight;
+
+                        // Смена состояний:
+                        if (windowBottom >= firstBottom) {
+                            scrollContainer.classList.add('scrolled-past-first');
+                        } else {
+                            scrollContainer.classList.remove('scrolled-past-first');
+                        }
+
+                        // Горизонтальный скролл:
+                        if (windowTop >= horizontalZoneTop && windowTopBottom <= secondTop) {
+                            const totalScrollWidth = scrollWrapper.scrollWidth - window.innerWidth;
+                            const progress = (windowTop - horizontalZoneTop) / (secondTop - horizontalZoneTop);
+                            const translateX = -progress * totalScrollWidth;
+                            scrollWrapper.style.transform = `translateX(${translateX}px)`;
+                        }
+                    });
+                });</script></div><div class="answer" id="answer"><h2 class="anim" data-key="why_ssw">Почему именно SSW?</h2><ul><li class="anim" data-key="why_team">Упрощает работу даже с большими командами.</li><li class="anim" data-key="why_transparency">Повышает прозрачность загруженности сотрудников.</li><li class="anim" data-key="why_risk">Уменьшает риск накладок и ошибок при планировании.</li></ul><style>.answer {
+                    margin: 25vh auto 50vh auto;
+                    padding: 1.5rem;
+                    border-radius: 8px;
+                    line-height: 1.6;
+                }
+
+                .anim {
+                    opacity: 0;
+                    transform: translateX(50px);
+                    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+                }
+
+                .anim.animated {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+
+                .answer h2 {
+                    margin-bottom: 1rem;
+                    font-size: clamp(2rem, 8vw, 5rem);
+                    font-weight: 600;
+                    text-align: center;
+                    padding-bottom: 0.5rem;
+                }
+
+                .answer ul {
+                    padding-left: 1.5rem;
+                    margin: 1rem 0;
+                }
+
+                .answer li {
+                    margin-bottom: 0.75rem;
+                    list-style-type: disc;
+                    font-size: clamp(1.5rem, 6vw, 2.5rem);
+                }
+
+                .answer li::marker {
+                    color: #3498db;
+                }</style><script>document.addEventListener('DOMContentLoaded', () => {
+                    const elements = document.querySelectorAll('.anim');
+
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add('animated');
+                            } else {
+                                entry.target.classList.remove('animated');
+                            }
+                        });
+                    }, {
+                        threshold: 0.5 // Когда 50% элемента видны
+                    });
+
+                    elements.forEach(el => observer.observe(el));
+                });</script></div></section><footer class="footer-index"><div class="footer__columns"><div class="footer__columns__copyright"><div class="footer__logo">SimpleScheduleWork</div><div class="footer__author" data-key="author">© Михаил Ершов</div></div><div class="footer__columns__info"><a class="footer__column-link" href="#start" data-key="to_home">Главная</a> <a class="footer__column-link" href="#content" data-key="possibilities">Возможности</a> <a class="footer__column-link" href="#answer" data-key="why">Почему SSW?</a> <a class="footer__column-link" href="./main.html" data-key="go_schedule">Перейти к расписанию</a> <a class="footer__column-link" href="./project.html" data-key="go_projects">К проектам</a> <a class="footer__column-link" href="./contact.html" data-key="contacts">Контакты</a></div></div><script>document.querySelectorAll('.footer__column-link[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault(); // Отменяем стандартное поведение
+
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        // Плавная прокрутка к элементу
+                        window.scrollTo({
+                            top: targetElement.offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });</script></footer><script src="changeTheme.bundle.js"></script></body></html>
