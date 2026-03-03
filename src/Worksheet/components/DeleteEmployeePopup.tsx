@@ -51,7 +51,7 @@ export const DeleteEmployeePopup: React.FC<DeleteEmployeePopupProps> = ({
         try {
             setLoading(true);
 
-            const response = await fetch(`http://127.0.0.1:8000/schedule/delete/${selectedEmployee?.id}/`, {
+            const response = await fetch(`https://ssw-backend-django.onrender.com/schedule/delete/${selectedEmployee?.id}/`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",

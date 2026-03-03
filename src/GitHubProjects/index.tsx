@@ -97,7 +97,7 @@ const GitHubProjects: React.FC = () => {
                         sort: 'updated',
                         per_page: 100,
                     }),
-                    fetch('http://127.0.0.1:8000/projects/all/', {
+                    fetch('https://ssw-backend-django.onrender.com/projects/all/', {
                         headers: {
                             "Authorization": `Bearer ${token}`, // 🔐 токен добавляется
                         },
@@ -366,7 +366,7 @@ const GitHubProjects: React.FC = () => {
             try {
                 const token = localStorage.getItem('authToken'); // 🔐 Получаем токен
 
-                const response = await fetch("http://127.0.0.1:8000/schedule/weekly/", {
+                const response = await fetch("https://ssw-backend-django.onrender.com/schedule/weekly/", {
                     headers: {
                         "Authorization": `Bearer ${token}`, // 🔐 токен добавляется
                         "Content-Type": "application/json"

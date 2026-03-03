@@ -122,7 +122,7 @@ const EmployeeManagementPopup: React.FC<EmployeeManagementPopupProps> = ({
         try {
             setLoading(true);
 
-            const response = await fetch('http://127.0.0.1:8000/projects/change/', {
+            const response = await fetch('https://ssw-backend-django.onrender.com/projects/change/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

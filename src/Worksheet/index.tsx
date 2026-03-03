@@ -109,7 +109,7 @@ const Worksheet: React.FC = () => {
             try {
                 if (!token) throw new Error("Ошибка при загрузке с сервера");
                 // console.log(token);
-                const response = await fetch("http://127.0.0.1:8000/schedule/weekly/", {
+                const response = await fetch("https://ssw-backend-django.onrender.com/schedule/weekly/", {
                     headers: {
                         "Authorization": `Bearer ${token}`,
                     },
@@ -294,7 +294,7 @@ const Worksheet: React.FC = () => {
 
         try {
             const token = localStorage.getItem("authToken");
-            const url = `http://127.0.0.1:8000/schedule/weekly/?date=${formattedDate}/`;
+            const url = `https://ssw-backend-django.onrender.com/schedule/weekly/?date=${formattedDate}/`;
 
             if (!token) throw new Error("Ошибка при загрузке с сервера");
 
@@ -596,7 +596,7 @@ const Worksheet: React.FC = () => {
                 return; // <<< ДОБАВИТЬ! Прерываем функцию
             }
 
-            const response = await fetch("http://127.0.0.1:8000/schedule/update/", {
+            const response = await fetch("https://ssw-backend-django.onrender.com/schedule/update/", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
